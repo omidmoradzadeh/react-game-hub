@@ -11,7 +11,6 @@ interface Props {
 
 const GameCard = ({ game }: Props) => {
   return (
-    <GameCardContainer>
       <Card>
         <Image src={game.background_image} />
         <CardBody>
@@ -24,7 +23,6 @@ const GameCard = ({ game }: Props) => {
           </HStack>
         </CardBody>
       </Card>
-    </GameCardContainer>
   );
 };
 
