@@ -15,17 +15,22 @@ import { FetchResponse } from "../services/api-client";
 
 interface Props {
   onSelectedGenre: (genre: Genre) => void;
-  selectedGenre: Genre | null;
+  selectedGenreId?: number;
 }
 
-const GenreList = ({ onSelectedGenre, selectedGenre }: Props) => {
+const GenreList = ({
+  onSelectedGenre,
+  selectedGenreId,
+}: Props) => {
   const { data, isLoading, error } = useGenres();
 
   if (error) return null;
   if (isLoading) return <Spinner />;
   return (
     <>
-      <Heading fontSize='2xl' marginBottom={3}>Genres</Heading>
+      <Heading fontSize="2xl" marginBottom={3}>
+        Genres
+      </Heading>
       <List>
         {data?.results.map((genre) => (
           <ListItem key={genre.id} paddingY="5px">
@@ -40,7 +45,7 @@ const GenreList = ({ onSelectedGenre, selectedGenre }: Props) => {
               <Button
                 whiteSpace={"normal"}
                 textAlign="left"
-                fontWeight={genre?.id === selectedGenre?.id ? "bold" : "normal"}
+                fontWeight={genre?.id === selectedGenreId ? "bold" : "normal"}
                 fontSize="lg"
                 variant="link"
                 onClick={() => onSelectedGenre(genre)}
